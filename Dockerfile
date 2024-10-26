@@ -15,14 +15,14 @@ RUN set -eux; \
     rm -rf /tmp/*; \
     wget -O - https://repo.litespeed.sh | bash;
 
-RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
-    $PHP_VERSION-curl $PHP_VERSION-imagick $PHP_VERSION-redis $PHP_VERSION-memcached $PHP_VERSION-intl -y
+# RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
+#    $PHP_VERSION-curl $PHP_VERSION-imagick $PHP_VERSION-redis $PHP_VERSION-memcached $PHP_VERSION-intl -y
 
 #RUN wget -O /usr/local/lsws/admin/misc/lsup.sh \
 #    https://raw.githubusercontent.com/litespeedtech/openlitespeed/master/dist/admin/misc/lsup.sh && \
 #    chmod +x /usr/local/lsws/admin/misc/lsup.sh
 
-RUN ln -s /usr/local/lsws/$PHP_VERSION/bin/php /usr/bin/php
+# RUN ln -s /usr/local/lsws/$PHP_VERSION/bin/php /usr/bin/php
 
 RUN wget -O -  https://get.acme.sh | sh
 
@@ -44,9 +44,9 @@ RUN cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/
 
 RUN cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/
 
-RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp8* ]]; then ln -sf /usr/local/lsws/$PHP_VERSION/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; fi"]
+# RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp8* ]]; then ln -sf /usr/local/lsws/$PHP_VERSION/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; fi"]
 
-RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp8* ]]; then ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp; fi"]
+#RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp8* ]]; then ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp; fi"]
 
 COPY entrypoint.sh /entrypoint.sh
 
