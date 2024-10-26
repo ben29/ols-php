@@ -7,17 +7,20 @@ RUN set -eux; \
     apt update && apt upgrade -y; \
     apt install wget curl cron tzdata -y; \
     wget https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
-    tar xzf openlitespeed-$OLS_VERSION.tgz && cd openlitespeed && ./install.sh && \
-    echo 'cloud-docker' > /usr/local/lsws/PLAT && rm -rf /openlitespeed && rm /openlitespeed-$OLS_VERSION.tgz
-
-RUN wget -O - https://repo.litespeed.sh | bash
+    tar xzf openlitespeed-$OLS_VERSION.tgz; \
+    cd openlitespeed; \
+    ./install.sh; \
+    echo 'cloud-docker' > /usr/local/lsws/PLAT; \
+    rm -rf /openlitespeed; \
+    /openlitespeed-$OLS_VERSION.tgz; \
+    wget -O - https://repo.litespeed.sh | bash;
 
 RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
     $PHP_VERSION-curl $PHP_VERSION-imagick $PHP_VERSION-redis $PHP_VERSION-memcached $PHP_VERSION-intl -y
 
-RUN wget -O /usr/local/lsws/admin/misc/lsup.sh \
-    https://raw.githubusercontent.com/litespeedtech/openlitespeed/master/dist/admin/misc/lsup.sh && \
-    chmod +x /usr/local/lsws/admin/misc/lsup.sh
+#RUN wget -O /usr/local/lsws/admin/misc/lsup.sh \
+#    https://raw.githubusercontent.com/litespeedtech/openlitespeed/master/dist/admin/misc/lsup.sh && \
+#    chmod +x /usr/local/lsws/admin/misc/lsup.sh
 
 RUN ln -s /usr/local/lsws/$PHP_VERSION/bin/php /usr/bin/php
 
