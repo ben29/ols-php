@@ -28,13 +28,13 @@ RUN wget -O -  https://get.acme.sh | sh
 
 ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
 
-ADD docker.conf /usr/local/lsws/conf/templates/docker.conf
+COPY docker.conf /usr/local/lsws/conf/templates/docker.conf
 
-ADD setup_docker.sh /usr/local/lsws/bin/setup_docker.sh
+COPY setup_docker.sh /usr/local/lsws/bin/setup_docker.sh
 
-ADD httpd_config.xml /usr/local/lsws/conf/httpd_config.xml
+COPY httpd_config.xml /usr/local/lsws/conf/httpd_config.xml
 
-ADD htpasswd /usr/local/lsws/admin/conf/htpasswd
+COPY htpasswd /usr/local/lsws/admin/conf/htpasswd
 
 RUN /usr/local/lsws/bin/setup_docker.sh && rm /usr/local/lsws/bin/setup_docker.sh
 
