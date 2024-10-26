@@ -11,7 +11,7 @@ RUN set -eux; \
     apt install --no-install-recommends ${DEPEND} -y; \
     rm -rf /var/lib/apt/lists/*; \
     cd /tmp; \
-    wget https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
+    wget --no-check-certificate https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
     cd openlitespeed; \
     ./install.sh; \
@@ -64,7 +64,7 @@ RUN set -eux; \
         --disable-all; \
     make && make install; \
     rm -rf /tmp/*; \
-    rm -rf /usr/local/lsws/lsphp83/php/; \
+    rm -rf /usr/local/lsws/lsphp83/php; \
     wget -O -  https://get.acme.sh | sh; \
     ln -s /usr/local/lsws/lsphp83/bin/php /usr/bin/php; \
     ln -sf /usr/local/lsws/$PHP_VERSION/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
