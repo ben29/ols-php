@@ -3,9 +3,10 @@ FROM ubuntu:24.04
 ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=lsphp83
 
-RUN apt-get update && apt-get install wget curl cron tzdata -y
-
-RUN wget https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz && \
+RUN set -eux; \
+    apt update && apt upgrade -y; \
+    apt install wget curl cron tzdata -y; \
+    wget https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
     tar xzf openlitespeed-$OLS_VERSION.tgz && cd openlitespeed && ./install.sh && \
     echo 'cloud-docker' > /usr/local/lsws/PLAT && rm -rf /openlitespeed && rm /openlitespeed-$OLS_VERSION.tgz
 
