@@ -3,6 +3,8 @@ FROM debian:12.7
 ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=lsphp83
 
+ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
+
 RUN set -eux; \
     apt update && apt upgrade -y; \
     apt install wget curl cron tzdata -y; \
@@ -13,20 +15,11 @@ RUN set -eux; \
     ./install.sh; \
     echo 'cloud-docker' > /usr/local/lsws/PLAT; \
     rm -rf /tmp/*; \
-    wget -O - https://repo.litespeed.sh | bash;
+    wget -O -  https://get.acme.sh | sh; \
+    ln -s /usr/local/lsws/$PHP_VERSION/bin/php /usr/bin/php; \
+    ln -sf /usr/local/lsws/$PHP_VERSION/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
+    ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp;
 
-# RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
-#    $PHP_VERSION-curl $PHP_VERSION-imagick $PHP_VERSION-redis $PHP_VERSION-memcached $PHP_VERSION-intl -y
-
-#RUN wget -O /usr/local/lsws/admin/misc/lsup.sh \
-#    https://raw.githubusercontent.com/litespeedtech/openlitespeed/master/dist/admin/misc/lsup.sh && \
-#    chmod +x /usr/local/lsws/admin/misc/lsup.sh
-
-# RUN ln -s /usr/local/lsws/$PHP_VERSION/bin/php /usr/bin/php
-
-RUN wget -O -  https://get.acme.sh | sh
-
-ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
 
 COPY docker.conf /usr/local/lsws/conf/templates/docker.conf
 
@@ -43,10 +36,6 @@ RUN chown 994:994 /usr/local/lsws/conf -R
 RUN cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/
 
 RUN cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/
-
-# RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp8* ]]; then ln -sf /usr/local/lsws/$PHP_VERSION/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; fi"]
-
-#RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp8* ]]; then ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp; fi"]
 
 COPY entrypoint.sh /entrypoint.sh
 
