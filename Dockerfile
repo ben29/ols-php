@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
-ARG OLS_VERSION
-ARG PHP_VERSION
+ARG OLS_VERSION=1.8.2
+ARG PHP_VERSION=8.3.13
 
 RUN apt-get update && apt-get install wget curl cron tzdata -y
 
