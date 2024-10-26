@@ -17,7 +17,7 @@ RUN set -eux; \
     ./install.sh; \
     echo 'cloud-docker' > /usr/local/lsws/PLAT; \
     wget --no-check-certificate https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
-    tar zvxf php-${PHP_VERSION}.tar.gz; \
+    tar zxf php-${PHP_VERSION}.tar.gz; \
     cd php-{PHP_VERSION}; \
     # Define prefix for installation
     prefix="/usr/local/lsws/lsphp83"; \
