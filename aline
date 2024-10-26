@@ -1,4 +1,12 @@
-openssl ruby shadow
-
 UNBTU:
 gcc pkg-config libxml2-dev libcurl4-openssl-dev zlib1g-dev libpng-dev g++ libonig-dev libssl-dev libsodium-dev libzip-dev make
+
+ALPINE:
+shadow openssl
+
+
+g++ zlib-dev pcre-dev cmake
+
+./configure \
+    --enable-adminssl=no
+    --enable-recaptcha=no \

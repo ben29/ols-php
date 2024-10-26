@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine
+spec:
+  revisionHistoryLimit: 0
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: test
+  template:
+    metadata:
+      labels:
+        name: test
+    spec:
+      containers:
+        - name: test
+          image: benhakim2010/php-ols:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7080
+          #command: ["sh", "-c", "while true; do echo Hello from Alpine!; sleep 5; done"]
