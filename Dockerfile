@@ -18,7 +18,7 @@ RUN set -eux; \
     echo 'cloud-docker' > /usr/local/lsws/PLAT; \
     wget --no-check-certificate https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
     tar zxf php-${PHP_VERSION}.tar.gz; \
-    cd php-{PHP_VERSION}; \
+    cd php-${PHP_VERSION}; \
     # Define prefix for installation
     prefix="/usr/local/lsws/lsphp83"; \
     CFLAGS="-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/php8.3-8.3.10=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/php8.3-8.3.10=/usr/src/php8.3-8.3.10-1+noble -O2 -Wall -fsigned-char -fno-strict-aliasing -fno-lto -g"; \
