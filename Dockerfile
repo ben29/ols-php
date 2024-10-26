@@ -6,13 +6,13 @@ ARG PHP_VERSION=lsphp83
 RUN set -eux; \
     apt update && apt upgrade -y; \
     apt install wget curl cron tzdata -y; \
+    cd /tmp; \
     wget https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
     cd openlitespeed; \
     ./install.sh; \
     echo 'cloud-docker' > /usr/local/lsws/PLAT; \
-    rm -rf /openlitespeed; \
-    /openlitespeed-$OLS_VERSION.tgz; \
+    rm -rf /tmp/*; \
     wget -O - https://repo.litespeed.sh | bash;
 
 RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
