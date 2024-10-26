@@ -1,4 +1,4 @@
-FROM debian:12.7
+FROM alpine:3.20.3
 
 ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=lsphp83
