@@ -67,7 +67,7 @@ RUN set -eux; \
     rm -rf /usr/local/lsws/lsphp83/php; \
     wget -O -  https://get.acme.sh | sh; \
     ln -s /usr/local/lsws/lsphp83/bin/php /usr/bin/php; \
-    ln -sf /usr/local/lsws/$PHP_VERSION/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
+    ln -sf /usr/local/lsws/lsphp83/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
     ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp;
 
 
@@ -76,8 +76,6 @@ COPY docker.conf /usr/local/lsws/conf/templates/docker.conf
 COPY setup_docker.sh /usr/local/lsws/bin/setup_docker.sh
 
 COPY httpd_config.xml /usr/local/lsws/conf/httpd_config.xml
-
-# COPY htpasswd /usr/local/lsws/admin/conf/htpasswd
 
 RUN /usr/local/lsws/bin/setup_docker.sh && rm /usr/local/lsws/bin/setup_docker.sh
 
