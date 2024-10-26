@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM debian:12.7
 
 ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=lsphp83
