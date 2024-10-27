@@ -4,7 +4,7 @@ ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=8.3.13
 
 ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
-ENV DEPEND="wget g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev libcurl4-openssl-dev libpng-dev libonig-dev libsodium-dev libzip-dev"
+ENV DEPEND="wget procps g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev libcurl4-openssl-dev libpng-dev libonig-dev libsodium-dev libzip-dev"
 
 COPY scripts/ /usr/local/src
 
