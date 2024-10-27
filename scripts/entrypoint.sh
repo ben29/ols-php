@@ -1,15 +1,4 @@
 #!/bin/bash
-#if [ -z "$(ls -A -- "/usr/local/lsws/conf/")" ]; then
-#	cp -R /usr/local/lsws/.conf/* /usr/local/lsws/conf/
-#fi
-#if [ -z "$(ls -A -- "/usr/local/lsws/admin/conf/")" ]; then
-#	cp -R /usr/local/lsws/admin/.conf/* /usr/local/lsws/admin/conf/
-#fi
-
-#chown -R lsadm:lsadm /usr/local/lsws/admin/conf/htpasswd
-#chmod 644 /usr/local/lsws/admin/conf/htpasswd
-#chown -R lsadm:lsadm /usr/local/lsws/admin/conf/
-#chmod 755 /usr/local/lsws/admin/conf/
 
 /usr/local/lsws/bin/lswsctrl start
 $@
