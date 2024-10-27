@@ -58,8 +58,6 @@ RUN set -eux; \
         --disable-phpdbg \
         --disable-all; \
     make && make install; \
-    php -n -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
-    php -n composer-setup.php --install-dir=/usr/local/bin --quiet; \
     rm -rf /tmp/*; \
     ln -s /usr/local/lsws/lsphp83/bin/php /usr/bin/php; \
     ln -sf /usr/local/lsws/lsphp83/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
@@ -76,7 +74,10 @@ RUN set -eux; \
     chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*; \
     mkdir -p /var/www/{html,logs,certs}; \
-    chown www-data:www-data /var/www -R;
+    chown www-data:www-data /var/www -R; \
+    php -n -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
+    php -n composer-setup.php --install-dir=/usr/local/bin --quiet; \
+    rm -rf composer-setup.php;
 
 ENTRYPOINT ["/entrypoint.sh"]
 
