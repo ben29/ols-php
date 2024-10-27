@@ -74,12 +74,13 @@ RUN set -eux; \
     ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp; \
     mv /usr/local/src/docker.conf /usr/local/lsws/conf/templates/docker.conf; \
     mv /usr/local/src/httpd_config.xml /usr/local/lsws/conf/httpd_config.xml; \
-    sh /usr/local/lsws/bin/setup_docker.sh; \
+    sh /usr/local/src/setup_docker.sh; \
     chown 994:994 /usr/local/lsws/conf -R; \
     cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/; \
     cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/; \
     mv /usr/local/src/entrypoint /entrypoint.sh; \
-    chmod +x /entrypoint.sh;
+    chmod +x /entrypoint.sh; \
+    rm -rf /usr/local/src/*;
 
 ENTRYPOINT ["/entrypoint.sh"]
 
