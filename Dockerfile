@@ -73,7 +73,8 @@ RUN set -eux; \
     chmod 755 /usr/local/lsws/admin/conf; \
     chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*; \
-    mkdir -p /var/www/{html,logs,certs}; \
+    mkdir -p /var/www/html; \
+    mkdir -p /var/www/certs; \
     chown www-data:www-data /var/www -R; \
     wget -O /tmp/composer-setup.php https://getcomposer.org/installer; \
     php -n /tmp/composer-setup.php --install-dir=/usr/local/bin --quiet; \
