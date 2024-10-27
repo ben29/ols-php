@@ -68,27 +68,15 @@ RUN set -eux; \
     ln -s /usr/local/lsws/lsphp83/bin/php /usr/bin/php; \
     ln -sf /usr/local/lsws/lsphp83/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
     ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp; \
+    mv /usr/local/src/docker.conf /usr/local/lsws/conf/templates/docker.conf; \
+    mv /usr/local/src/httpd_config.xml /usr/local/lsws/conf/httpd_config.xml; \
+    sh /usr/local/src/setup_docker.sh; \
+    chown 994:994 /usr/local/lsws/conf -R; \
+    cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/; \
+    cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/; \
+    mv /usr/local/src/entrypoint.sh /entrypoint.sh; \
+    chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*;
-
-ADD docker.conf /usr/local/lsws/conf/templates/docker.conf
-
-ADD setup_docker.sh /usr/local/lsws/bin/setup_docker.sh
-
-ADD httpd_config.xml /usr/local/lsws/conf/httpd_config.xml
-
-#ADD htpasswd /usr/local/lsws/admin/conf/htpasswd
-
-RUN /usr/local/lsws/bin/setup_docker.sh && rm /usr/local/lsws/bin/setup_docker.sh
-
-RUN chown 994:994 /usr/local/lsws/conf -R
-
-RUN cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/
-
-RUN cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/
-
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
