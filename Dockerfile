@@ -65,7 +65,8 @@ RUN set -eux; \
     ln -sf /usr/local/lsws/fcgi-bin/lsphp8 /usr/local/lsws/fcgi-bin/lsphp; \
     mv /usr/local/src/docker.conf /usr/local/lsws/conf/templates/docker.conf; \
     mv /usr/local/src/httpd_config.xml /usr/local/lsws/conf/httpd_config.xml; \
-    sh /usr/local/src/setup_docker.sh; \
+    #sh /usr/local/src/setup_docker.sh; \
+    cp -RP /usr/local/src/httpd_config.conf /usr/local/lsws/conf/httpd_config.conf; \
     cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/; \
     mv /usr/local/src/htpasswd /usr/local/lsws/admin/conf/htpasswd; \
     mv /usr/local/src/entrypoint.sh /entrypoint.sh; \
