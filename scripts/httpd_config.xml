@@ -2,8 +2,8 @@
 <httpServerConfig>
   <serverName>$HOSTNAME</serverName>
   <workerProcesses>2</workerProcesses>
-  <user>nobody</user>
-  <group>nogroup</group>
+  <user>www-data</user>
+  <group>www-data</group>
   <priority>0</priority>
   <chrootPath>/</chrootPath>
   <enableChroot>0</enableChroot>
