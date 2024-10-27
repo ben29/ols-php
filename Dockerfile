@@ -75,9 +75,9 @@ RUN set -eux; \
     rm -rf /usr/local/src/*; \
     mkdir -p /var/www/{html,logs,certs}; \
     chown www-data:www-data /var/www -R; \
-    wget -O composer-setup.php https://getcomposer.org/installer; \
-    php -n composer-setup.php --install-dir=/usr/local/bin --quiet; \
-    rm -rf composer-setup.php;
+    wget -O /tmp/composer-setup.php https://getcomposer.org/installer; \
+    php -n /tmp/composer-setup.php --install-dir=/usr/local/bin --quiet; \
+    rm -rf /tmp/composer-setup.php;
 
 ENTRYPOINT ["/entrypoint.sh"]
 
