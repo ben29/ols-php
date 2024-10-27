@@ -73,10 +73,12 @@ RUN set -eux; \
     chmod 644 /usr/local/lsws/admin/conf/htpasswd; \
     chmod 755 /usr/local/lsws/admin/conf; \
     chmod +x /entrypoint.sh; \
-    rm -rf /usr/local/src/*;
+    rm -rf /usr/local/src/*; \
+    mkdir -p /var/www/{html,logs,certs}; \
+    chown www-data:www-data /var/www -R;
 
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 7080 80 443
 
-WORKDIR /var/www/vhosts/
+WORKDIR /var/www/html/
