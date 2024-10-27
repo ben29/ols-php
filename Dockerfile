@@ -73,11 +73,14 @@ RUN set -eux; \
     mv /usr/local/src/docker.conf /usr/local/lsws/conf/templates/docker.conf; \
     mv /usr/local/src/httpd_config.xml /usr/local/lsws/conf/httpd_config.xml; \
     sh /usr/local/src/setup_docker.sh; \
-    chown 994:994 /usr/local/lsws/conf -R; \
     cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/; \
     cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/; \
     mv /usr/local/src/htpasswd /usr/local/lsws/admin/conf/htpasswd; \
     mv /usr/local/src/entrypoint.sh /entrypoint.sh; \
+    chown -R lsadm:lsadm /usr/local/lsws/admin/conf/htpasswd; \
+    chmod 644 /usr/local/lsws/admin/conf/htpasswd; \
+    chown -R lsadm:lsadm /usr/local/lsws/admin/conf; \
+    chmod 755 /usr/local/lsws/admin/conf; \
     chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*;
 
