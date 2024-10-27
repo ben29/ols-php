@@ -6,6 +6,8 @@ ARG PHP_VERSION=8.3.13
 ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
 ENV DEPEND="wget procps g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev openssl libcurl4-openssl-dev libpng-dev libonig-dev libsodium-dev libzip-dev"
 
+COPY scripts/ /usr/local/src
+
 RUN set -eux; \
     apt update && \
     apt upgrade -y && \
@@ -74,6 +76,7 @@ RUN set -eux; \
     chown 994:994 /usr/local/lsws/conf -R; \
     cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/; \
     cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/; \
+    mv scripts/htpasswd /usr/local/lsws/admin/conf/htpasswd; \
     mv /usr/local/src/entrypoint.sh /entrypoint.sh; \
     chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*;
