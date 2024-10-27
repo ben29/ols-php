@@ -78,7 +78,7 @@ ADD setup_docker.sh /usr/local/lsws/bin/setup_docker.sh
 
 ADD httpd_config.xml /usr/local/lsws/conf/httpd_config.xml
 
-ADD htpasswd /usr/local/lsws/admin/conf/htpasswd
+#ADD htpasswd /usr/local/lsws/admin/conf/htpasswd
 
 RUN /usr/local/lsws/bin/setup_docker.sh && rm /usr/local/lsws/bin/setup_docker.sh
 
