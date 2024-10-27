@@ -4,7 +4,7 @@ ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=8.3.13
 
 ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
-ENV DEPEND="wget procps g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev libcurl4-openssl-dev libpng-dev libonig-dev libsodium-dev libzip-dev"
+ENV DEPEND="wget procps g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev openssl libcurl4-openssl-dev libpng-dev libonig-dev libsodium-dev libzip-dev"
 
 RUN set -eux; \
     apt update && \
@@ -12,13 +12,13 @@ RUN set -eux; \
     apt install --no-install-recommends ${DEPEND} -y && \
     apt clean && rm -rf /var/lib/apt/lists/*; \
     cd /tmp; \
-    wget --no-check-certificate https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
+    wget -q --no-check-certificate https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
     cd openlitespeed; \
     ./install.sh; \
     echo 'cloud-docker' > /usr/local/lsws/PLAT; \
     cd ..; \
-    wget --no-check-certificate https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
+    wget -q --no-check-certificate https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
     tar zxf php-${PHP_VERSION}.tar.gz; \
     cd php-${PHP_VERSION}; \
     prefix="/usr/local/lsws/lsphp83"; \
