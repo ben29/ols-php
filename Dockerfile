@@ -78,7 +78,7 @@ RUN set -eux; \
     chown 994:994 /usr/local/lsws/conf -R; \
     cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/; \
     cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/; \
-    mv /usr/local/src/entrypoint /entrypoint.sh; \
+    mv /usr/local/src/entrypoint.sh /entrypoint.sh; \
     chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*;
 
