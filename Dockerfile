@@ -9,9 +9,10 @@ ENV DEPEND="wget procps g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev li
 COPY scripts/ /usr/local/src
 
 RUN set -eux; \
-    apt update && apt upgrade -y; \
-    apt install --no-install-recommends ${DEPEND} -y; \
-    rm -rf /var/lib/apt/lists/*; \
+    apt update && \
+    apt upgrade -y && \
+    apt install --no-install-recommends ${DEPEND} -y && \
+    apt clean && rm -rf /var/lib/apt/lists/*; \
     cd /tmp; \
     wget --no-check-certificate https://openlitespeed.org/packages/openlitespeed-$OLS_VERSION.tgz; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
@@ -22,7 +23,6 @@ RUN set -eux; \
     wget --no-check-certificate https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
     tar zxf php-${PHP_VERSION}.tar.gz; \
     cd php-${PHP_VERSION}; \
-    # Define prefix for installation
     prefix="/usr/local/lsws/lsphp83"; \
     CFLAGS="-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/php8.3-8.3.10=. -flto=auto -ffat-lto-objects -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/php8.3-8.3.10=/usr/src/php8.3-8.3.10-1+noble -O2 -Wall -fsigned-char -fno-strict-aliasing -fno-lto -g"; \
     ./configure \
@@ -67,7 +67,6 @@ RUN set -eux; \
         --disable-all; \
     make && make install; \
     rm -rf /tmp/*; \
-    rm -rf /usr/local/lsws/lsphp83/php; \
     wget -O -  https://get.acme.sh | sh; \
     ln -s /usr/local/lsws/lsphp83/bin/php /usr/bin/php; \
     ln -sf /usr/local/lsws/lsphp83/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
@@ -84,8 +83,6 @@ RUN set -eux; \
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 7080
-EXPOSE 80
-EXPOSE 443
+EXPOSE 7080 80 443
 
 WORKDIR /var/www/vhosts/
