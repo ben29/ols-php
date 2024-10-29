@@ -57,7 +57,8 @@ RUN set -eux; \
         --disable-cgi \
         --disable-phpdbg \
         --disable-all; \
-    make && make install; \
+    make -j "$(nproc)"; \
+    make -j "$(nproc)" install; \
     rm -rf /tmp/*; \
     ln -s /usr/local/lsws/lsphp83/bin/php /usr/bin/php; \
     ln -sf /usr/local/lsws/lsphp83/bin/lsphp /usr/local/lsws/fcgi-bin/lsphp8; \
