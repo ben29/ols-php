@@ -17,7 +17,7 @@ RUN set -eux; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
     cd openlitespeed; \
     ./install.sh; \
-    echo 'cloud-docker' > /usr/local/lsws/PLAT; \
+    #echo 'cloud-docker' > /usr/local/lsws/PLAT; \
     cd ..; \
     wget -q https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
     tar zxf php-${PHP_VERSION}.tar.gz; \
