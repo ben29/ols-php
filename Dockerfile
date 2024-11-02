@@ -3,7 +3,6 @@ FROM debian:12.7
 ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=8.3.13
 
-ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
 ENV DEPEND="wget ca-certificates procps g++ make pkg-config libxml2-dev libssl-dev zlib1g-dev openssl libcurl4-openssl-dev libpng-dev libonig-dev libsodium-dev libzip-dev"
 
 COPY scripts/ /usr/local/src
@@ -17,7 +16,6 @@ RUN set -eux; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
     cd openlitespeed; \
     ./install.sh; \
-    #echo 'cloud-docker' > /usr/local/lsws/PLAT; \
     cd ..; \
     wget -q https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
     tar zxf php-${PHP_VERSION}.tar.gz; \
@@ -76,7 +74,6 @@ RUN set -eux; \
     chmod +x /entrypoint.sh; \
     rm -rf /usr/local/src/*; \
     mkdir -p /var/www/html; \
-    mkdir -p /var/www/certs; \
     chown www-data:www-data /var/www -R; \
     wget -O /tmp/composer-setup.php https://getcomposer.org/installer; \
     php -n /tmp/composer-setup.php --install-dir=/usr/local/bin --quiet; \
