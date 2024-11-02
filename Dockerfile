@@ -1,5 +1,5 @@
 FROM debian:12.7
-
+# OTYyOWQ5
 ARG OLS_VERSION=1.8.2
 ARG PHP_VERSION=8.3.13
 
@@ -53,6 +53,7 @@ RUN set -eux; \
         --enable-intl \
         --enable-zts \
         --enable-ipv6 \
+        --enable-fpm \
         --enable-litespeed \
         --disable-cgi \
         --disable-phpdbg \
