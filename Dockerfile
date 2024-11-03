@@ -16,6 +16,7 @@ RUN set -eux; \
     tar xzf openlitespeed-$OLS_VERSION.tgz; \
     cd openlitespeed; \
     ./install.sh; \
+    # Replace config
     cd ..; \
     wget -q https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
     tar zxf php-${PHP_VERSION}.tar.gz; \
