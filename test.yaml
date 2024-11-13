@@ -5,5 +5,5 @@ metadata:
 spec:
   containers:
     - name: debian-container
-      image: debian:12.7
+      image: debian:12.8
       command: ["sleep", "36000"]
